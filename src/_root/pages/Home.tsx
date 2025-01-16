@@ -5,7 +5,7 @@ interface IProps {
 
 const Home = ({}: IProps) => {
   return (
-    <div></div>
+    <div>Home</div>
   )
 }
 
