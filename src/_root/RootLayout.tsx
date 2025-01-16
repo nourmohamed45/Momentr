@@ -5,7 +5,9 @@ interface IProps {
 
 const RootLayout = ({}: IProps) => {
   return (
-    <div>RootLayout</div>
+    <div className="w-full md:flex">
+      
+    </div>
   )
 }
 

@@ -5,6 +5,7 @@ import SignupForm from "./_auth/forms/SignupForm";
 import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./_root/RootLayout";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster"
 
 interface IProps {}
 
@@ -23,6 +24,9 @@ const App = ({}: IProps) => {
           <Route index element={<Home />} />
         </Route>
       </Routes>
+
+      {/* Using Shadcn Toaster */}
+      <Toaster />
     </main>
   );
 };
