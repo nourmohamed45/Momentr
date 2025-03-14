@@ -1,4 +1,3 @@
-import { use } from './QueriesAndMutations';
 import { INewPost, INewUser, IUpdatePost } from "@/types";
 import {
   useQuery, // for fetching data
@@ -177,11 +176,12 @@ export const useGetInfinitePosts = () => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
     queryFn: getInfinitePosts,
+    initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       if(lastPage && lastPage?.documents.length === 0) return null;
       
       const lastId = lastPage?.documents[lastPage?.documents?.length - 1 ]?.$id;
-      return lastId
+      return lastId ? parseInt(lastId, 10) || null : null;
     },
   });
 }

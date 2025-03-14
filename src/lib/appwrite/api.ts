@@ -357,20 +357,13 @@ export async function deletePost(postId: string, imageId: string) {
   if(!postId || !imageId) throw Error;
   try {
     // Delete post
-    const deletedPost = await databases.deleteDocument(
+    await databases.deleteDocument(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
       postId
     );
 
     return { status: "ok" };
-
-    // if (!deletedPost) throw Error;
-
-    // // Delete post image
-    // await deleteFile(imageId);
-
-    // return deletedPost;
   } catch (error) {
     console.log(error);
   }

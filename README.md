@@ -87,6 +87,7 @@ src/
 ### Prerequisites
 - Node.js (v16 or higher)
 - npm or yarn
+- Appwrite account (for backend services)
 
 ### Installation
 
@@ -106,14 +107,16 @@ src/
 3. Set up environment variables
    Create a `.env` file in the root directory with the following variables:
    ```
-   VITE_APPWRITE_URL=
-   VITE_APPWRITE_PROJECT_ID=
-   VITE_APPWRITE_DATABASE_ID=
-   VITE_APPWRITE_STORAGE_ID=
-   VITE_APPWRITE_USER_COLLECTION_ID=
-   VITE_APPWRITE_POST_COLLECTION_ID=
-   VITE_APPWRITE_SAVES_COLLECTION_ID=
+   VITE_APPWRITE_URL=https://cloud.appwrite.io/v1
+   VITE_APPWRITE_PROJECT_ID=your-project-id
+   VITE_APPWRITE_DATABASE_ID=your-database-id
+   VITE_APPWRITE_STORAGE_ID=your-storage-id
+   VITE_APPWRITE_USER_COLLECTION_ID=your-user-collection-id
+   VITE_APPWRITE_POST_COLLECTION_ID=your-post-collection-id
+   VITE_APPWRITE_SAVES_COLLECTION_ID=your-saves-collection-id
    ```
+   
+   > **Note:** The application includes default values for development, but for production use, you should set up your own Appwrite project and configure these variables accordingly.
 
 4. Start the development server
    ```bash

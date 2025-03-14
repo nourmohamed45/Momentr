@@ -40,7 +40,6 @@ type FileUploaderProps = {
 };
 
 const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
-  const [file, setFile] = useState<File[]>([]);
   const [fileUrl, setFileUrl] = useState(mediaUrl);
   const { toast } = useToast();
 
@@ -186,7 +185,6 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
         return;
       }
 
-      setFile(acceptedFiles);
       fieldChange(acceptedFiles);
       setFileUrl(URL.createObjectURL(file));
     },
