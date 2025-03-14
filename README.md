@@ -1,50 +1,153 @@
-# React + TypeScript + Vite
+# Momentr - Modern Social Media Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Momentr Logo](public/assets/logo.webp)
 
-Currently, two official plugins are available:
+## 🌟 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Momentr is a feature-rich social media application built with modern web technologies. It provides users with a seamless experience to share moments, connect with others, and explore content in a beautiful, responsive interface.
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **User Authentication**
+  - Secure sign-up and sign-in
+  - Protected routes and persistent sessions
+  - Profile management
 
-- Configure the top-level `parserOptions` property like this:
+- **Content Creation & Sharing**
+  - Create posts with images
+  - Add captions, locations, and tags
+  - Edit and update your content
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Social Interaction**
+  - Like and save posts
+  - View user profiles
+  - Explore content from other users
+
+- **Responsive Design**
+  - Optimized for mobile, tablet, and desktop
+  - Intuitive navigation with sidebar and bottombar
+  - Dark theme for comfortable viewing
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - Component-based UI development
+- **TypeScript** - Type-safe code
+- **Vite** - Next-generation frontend tooling
+- **React Router v7** - Navigation and routing
+- **React Query** - Data fetching, caching, and state management
+- **React Hook Form** - Form validation and handling
+- **Zod** - Schema validation
+- **Tailwind CSS** - Utility-first styling
+
+### Backend
+- **Appwrite** - Backend as a Service (BaaS)
+  - Authentication
+  - Database
+  - Storage
+  - Avatars
+
+### Development Tools
+- **ESLint** - Code linting
+- **PostCSS** - CSS processing
+- **Shadcn/UI** - UI component patterns
+
+## 🏗️ Architecture
+
+Momentr follows a modern React application architecture:
+
+- **Component-Based Structure** - Reusable UI components
+- **Context API** - Global state management for authentication
+- **Custom Hooks** - Encapsulated logic for reusability
+- **Service Layer** - Abstracted API calls to Appwrite
+- **Type Safety** - Comprehensive TypeScript types
+
+## 📂 Project Structure
+
+```
+src/
+├── _auth/               # Authentication pages and components
+├── _root/               # Main application pages
+├── components/          # Reusable UI components
+│   ├── forms/           # Form components
+│   ├── shared/          # Shared components
+│   └── ui/              # UI primitives
+├── constants/           # Application constants
+├── context/             # React Context providers
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility libraries
+│   ├── appwrite/        # Appwrite configuration and API
+│   ├── react-query/     # React Query hooks and config
+│   └── validation/      # Zod validation schemas
+└── types/               # TypeScript type definitions
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/momentr.git
+   cd momentr
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up environment variables
+   Create a `.env` file in the root directory with the following variables:
+   ```
+   VITE_APPWRITE_URL=
+   VITE_APPWRITE_PROJECT_ID=
+   VITE_APPWRITE_DATABASE_ID=
+   VITE_APPWRITE_STORAGE_ID=
+   VITE_APPWRITE_USER_COLLECTION_ID=
+   VITE_APPWRITE_POST_COLLECTION_ID=
+   VITE_APPWRITE_SAVES_COLLECTION_ID=
+   ```
+
+4. Start the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+## 📦 Building for Production
+
+```bash
+npm run build
+# or
+yarn build
 ```
+
+## 🔒 Security
+
+- Secure authentication with Appwrite
+- Protected routes for authenticated users
+- Input validation with Zod
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📬 Contact
+
+For any inquiries, please reach out to [your-email@example.com](mailto:your-email@example.com).
+
+---
+
+Built with ❤️ using React, TypeScript, and Appwrite.
