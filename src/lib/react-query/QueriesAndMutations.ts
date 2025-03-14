@@ -13,14 +13,18 @@ import {
   getAllUsers,
   getCurrentUser,
   getInfinitePosts,
+  getLikedPosts,
   getPostById,
   getRecentPosts,
+  getUserById,
+  getUserPosts,
   likePost,
   savePost,
   searchPosts,
   signInAccount,
   signOutAccount,
   updatePost,
+  updateUser,
 } from "../appwrite/api";
 import { QUERY_KEYS } from "./queryKeys";
 
@@ -199,5 +203,54 @@ export const useGetUsers = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_USERS],
     queryFn: getAllUsers,
+  });
+};
+
+export const useGetUserById = (userId: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER_BY_ID, userId],
+    queryFn: () => getUserById(userId),
+    enabled: !!userId,
+  });
+};
+
+export const useGetUserPosts = (userId: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER_POSTS, userId],
+    queryFn: () => getUserPosts(userId),
+    enabled: !!userId,
+  });
+};
+
+export const useUpdateUser = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: ({ userId, userData }: { 
+      userId: string; 
+      userData: { 
+        name?: string; 
+        bio?: string; 
+        imageUrl?: URL | string; 
+        imageId?: string; 
+        file?: File[] 
+      } 
+    }) => updateUser(userId, userData),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+      });
+    },
+  });
+};
+
+export const useGetLikedPosts = (userId: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_LIKED_POSTS, userId],
+    queryFn: () => getLikedPosts(userId),
+    enabled: !!userId,
   });
 };

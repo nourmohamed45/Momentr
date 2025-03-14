@@ -177,15 +177,19 @@
 
   /* Profile */
   .profile-container {
-    @apply flex flex-col items-center flex-1 gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
+    @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
   }
 
-  .profile-inner_container {
-    @apply flex items-center md:mb-8 xl:items-start gap-8 flex-col xl:flex-row relative max-w-5xl w-full;
+  .profile-inner {
+    @apply flex flex-col max-w-5xl w-full gap-8;
+  }
+
+  .profile-tabs {
+    @apply flex gap-4 border-b pb-2 border-dark-4 items-center;
   }
 
   .profile-tab {
-    @apply flex-center gap-3 py-4 w-48 bg-dark-2  transition flex-1 xl:flex-initial;
+    @apply flex gap-2 items-center text-light-3 py-3 px-4;
   }
 
   /* Saved */

@@ -120,6 +120,93 @@ export async function getAllUsers() {
   }
 }
 
+// =================== GET USER BY ID ==================
+export async function getUserById(userId: string) {
+  try {
+    const user = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId
+    );
+
+    if (!user) throw Error;
+
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// =================== GET USER POSTS ==================
+export async function getUserPosts(userId: string) {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      [Query.equal("creator", userId), Query.orderDesc("$createdAt")]
+    );
+
+    if (!posts) throw Error;
+
+    return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// =================== UPDATE USER ==================
+export async function updateUser(userId: string, userData: {
+  name?: string;
+  bio?: string;
+  imageUrl?: URL | string;
+  imageId?: string;
+  file?: File[];
+}) {
+  try {
+    let image = {
+      imageUrl: userData.imageUrl,
+      imageId: userData.imageId,
+    };
+
+    if (userData.file && userData.file.length > 0) {
+      // Upload new file to appwrite storage
+      const uploadedFile = await uploadFile(userData.file[0]);
+      if (!uploadedFile) throw Error;
+
+      // Get new file url
+      const fileUrl = getFilePreview(uploadedFile.$id);
+      if (!fileUrl) {
+        await deleteFile(uploadedFile.$id);
+        throw Error;
+      }
+
+      image = { 
+        imageUrl: fileUrl, 
+        imageId: uploadedFile.$id 
+      };
+    }
+
+    // Update user
+    const updatedUser = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId,
+      {
+        name: userData.name,
+        bio: userData.bio,
+        imageUrl: image.imageUrl,
+        imageId: image.imageId,
+      }
+    );
+
+    if (!updatedUser) throw Error;
+
+    return updatedUser;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // =====================================
 // =============== POSTS ===============
 // =====================================
@@ -424,5 +511,23 @@ export async function searchPosts(searchTerm: string) {
     return posts;
   } catch (error) {
     console.log(error);
+  }
+}
+
+// =================== GET LIKED POSTS ==================
+export async function getLikedPosts(userId: string) {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      [Query.contains("likes", [userId])]
+    );
+
+    if (!posts) throw Error;
+
+    return posts;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 }
