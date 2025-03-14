@@ -103,6 +103,23 @@ export async function signOutAccount() {
   }
 }
 
+// =================== GET ALL USERS ==================
+export async function getAllUsers() {
+  try {
+    const users = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      [Query.orderDesc("$createdAt"), Query.limit(50)]
+    );
+
+    if (!users) throw Error;
+
+    return users;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // =====================================
 // =============== POSTS ===============
 // =====================================

@@ -251,6 +251,14 @@
   .user-card {
     @apply flex-center flex-col gap-4 border border-dark-4 rounded-[20px] px-5 py-8;
   }
+
+  .user-card_link {
+    @apply flex-center flex-col gap-1 w-full;
+  }
+
+  .user-card_img {
+    @apply rounded-full w-14 h-14 object-cover;
+  }
 }
 
 @layer components {
